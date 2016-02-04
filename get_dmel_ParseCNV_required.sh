@@ -65,10 +65,11 @@ awk '{print $1"\t"$2"\t"$3"\t"$6"#"$7"#"$8}' dm3genomicSuperDup.tab > dm3genomic
 ## Click Upload File 
 ## Click View Conversions Copy File into GeneRef
 mv hglft_genome_*.bed dm6_genomicSuperDup.tab
-sort -k 1,1 -k 2,2n dm6_genomicSuperDup.tab | sed 's/#/\t/g' > dm6_genomicSuperDup.tab.sorted #Sort By Chr Pos (Will: Output wrong. Possible mac/linux bash version issue.)
 
+## Sort By Chr Pos. Note unix may have problems with \t as tab symbol depending on version.
+sort -k 1,1 -k 2,2n dm6_genomicSuperDup.tab | sed 's/#/\t/g' > dm6_genomicSuperDup.tab.sorted 
 # sort -k 1,1 -k 2,2n dm6_genomicSuperDup.tab | sed -e 's|\#|\t|g' > dm6_genomicSuperDup.tab.sorted 
-sort -k 1,1 -k 2,2n dm6_genomicSuperDup.tab | sed -e 's|#| |g' > dm6_genomicSuperDup.tab.sorted
+# sort -k 1,1 -k 2,2n dm6_genomicSuperDup.tab | sed -e 's|#| |g' > dm6_genomicSuperDup.tab.sorted
 
 
 awk '{print $5":"$6"\t"$1"\t"$4"\t"$2"\t"$3"\t \t \t \t \t \t \t "}' dm6_genomicSuperDup.tab.sorted > dm6_genomicSuperDups_SimFormat_AllCol.sorted
